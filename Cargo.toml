@@ -7,3 +7,6 @@ edition = "2021"
 mlua = { version = "0.10", features = ["lua54", "vendored"] }
 enigo = { version = "0.3.0" }
 egui = { version = "0.31.1" }
+opencv = { version = "0.94.4" }
+image = { version = "0.25.6" }
+xcap = { version = "0.2" }
