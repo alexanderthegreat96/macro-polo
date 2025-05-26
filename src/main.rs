@@ -4,7 +4,12 @@ fn main() {
     let lua_text = r#"
         move_mouse(500, 300)
         left_click()
-        type_text("🔥 Macro system initialized!")
+        type_text("mcro-polo intialized!")
+        key_press("A")
+        sleep(1000)
+        key_press("B")
+        sleep(1000)
+        key_press("C")
         "#;
 
     let execute: mlua::Result<()> = lua_bindings::lua_executor::compile_and_exec(lua_text);

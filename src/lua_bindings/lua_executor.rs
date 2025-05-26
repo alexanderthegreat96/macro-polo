@@ -13,6 +13,10 @@ pub fn compile_and_exec(lua_text: &str) -> mlua::Result<()> {
     let lua = Lua::new_with(StdLib::ALL_SAFE, Default::default())?;
     let enigo = Rc::new(RefCell::new(Enigo::new(&Settings::default()).unwrap()));
 
+    // will call the function from bindings.rs
+    // which create the functions required for
+    // mouse movements, mouse presses, sleep
+    // typing and so on
     register_all(&lua, Rc::clone(&enigo))?;
 
     lua.load(lua_text).exec()?;
