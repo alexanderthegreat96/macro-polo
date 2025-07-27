@@ -1,8 +1,6 @@
 use enigo::Key;
 
-// simply maps the string from the user
-// to a Key type
-// it is also platofmr aware
+// platform aware key mapping
 pub fn key_from_str(name: &str) -> Option<Key> {
     use Key::*;
 

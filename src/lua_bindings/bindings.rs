@@ -3,8 +3,22 @@ use std::{cell::RefCell, time::Duration};
 
 use enigo::{Axis, Button, Coordinate, Direction, Enigo, Keyboard, Mouse};
 use mlua::{Error, FromLuaMulti, Function, Lua, MultiValue, Result, Value};
+use thiserror::Error;
 
 use super::key_mapping::key_from_str;
+
+// custom error to wrap lua type stuff
+#[derive(Debug, Error)]
+pub enum ScriptError {
+    #[error("Lua error: {0}")]
+    Lua(#[from] mlua::Error),
+
+    #[error("Enigo Input Error: {0}")]
+    EnigoInput(#[from] enigo::InputError),
+
+    #[error("Enigo Con Error: {0}")]
+    EnigoConnection(#[from] enigo::NewConError),
+}
 
 // Helper function to register a Lua function
 fn register_fn<F>(lua: &Lua, name: &str, func: F) -> Result<()>
